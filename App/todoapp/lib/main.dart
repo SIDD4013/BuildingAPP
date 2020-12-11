@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'models/global.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Todo App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Todo App'),
@@ -37,20 +38,57 @@ class _MyHomePageState extends State<MyHomePage> {
         child: DefaultTabController(
           length: 3,
           child: new Scaffold(
-            body: TabBarView(
+            body: Stack(
               children: [
-                new Container(
-                  color: Colors.yellow,
+                TabBarView(
+                  children: [
+                    new Container(
+                      color: darkGreyColor,
+                    ),
+                    new Container(
+                      color: Colors.orange,
+                    ),
+                    new Container(
+                      color: Colors.lightGreen,
+                    ),
+                  ],
                 ),
-                new Container(
-                  color: Colors.orange,
+                Container(
+                  padding: EdgeInsets.only(left: 30),
+                  height: 160,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(50),
+                        bottomRight: Radius.circular(50)),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Intray", style: intrayTitleStyle),
+                      Container()
+                    ],
+                  ),
                 ),
-                new Container(
-                  color: Colors.lightGreen,
+                Container(
+                  height: 80,
+                  width: 80,
+                  margin: EdgeInsets.only(
+                      top: 120,
+                      left: MediaQuery.of(context).size.width * 0.5 - 40),
+                  child: FloatingActionButton(
+                    child: Icon(
+                      Icons.add,
+                      size: 70,
+                    ),
+                    backgroundColor: redColor,
+                    onPressed: () {},
+                  ),
                 ),
               ],
             ),
             appBar: AppBar(
+              elevation: 0,
               title: new TabBar(
                 tabs: [
                   Tab(
@@ -63,11 +101,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: new Icon(Icons.perm_identity),
                   ),
                 ],
-                labelColor: Colors.yellow,
+                labelColor: darkGreyColor,
                 unselectedLabelColor: Colors.blue,
                 indicatorSize: TabBarIndicatorSize.label,
                 indicatorPadding: EdgeInsets.all(5.0),
+                indicatorColor: Colors.transparent,
               ),
+              backgroundColor: Colors.white,
             ),
             backgroundColor: Colors.white,
           ),
